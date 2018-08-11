@@ -1,4 +1,5 @@
 = form_for @comment do |f|
+  - @comment.user = current_user
   - if @comment.errors.any?
     #error_explanation
       %h2= "#{pluralize(@comment.errors.count, "error")} prohibited this comment from being saved:"
@@ -6,17 +7,13 @@
         - @comment.errors.full_messages.each do |message|
           %li= message
 
-  .field
-    = f.label :title
-    = f.text_field :title
-  .field
-    = f.label :content
-    = f.text_area :content
-  .field
+  .form-group
+    = f.text_field :title, placeholder: 'Título', class: 'form-control'
+  .form-group
+    = f.text_area :content, class: 'form-control', row: "3", required: true, placeholder: '¿Qué está pasando?'
+  .float-right
     = f.label :private
     = f.check_box :private
-  .field
-    = f.label :user
-    = f.text_field :user
-  .actions
-    = f.submit 'Save'
+    = f.hidden_field :user_id
+
+    = f.submit 'Save', class: 'btn btn-sm btn-success'
