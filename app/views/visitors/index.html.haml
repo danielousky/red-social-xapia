@@ -1,0 +1,26 @@
+.raw
+	.col-5
+		%ul.list-group 
+			%li.list-group-item.list-group-item-info
+				Tus Publicaciones:
+				= link_to 'Publicar', 'javascript:void(0)', class: 'btn btn-outline-success float-right btn-sm', id: 'send_comment'
+				#send_comment_form.hidden-sm-up{style: 'display:none;'}
+					= render '/comments/form'
+			- @user.comments.order('created_at DESC').first(20).each do |comment| 
+				%li.list-group-item
+					= render comment
+
+	.col-5
+		%ul.list-group 
+			%li.list-group-item.list-group-item-secondary
+				Otras Publicaciones:
+			-# Coment.all.publics
+
+
+:javascript
+
+	$( "#send_comment" ).click(function() {
+		$('#send_comment_form').slideToggle();
+		$(this).hide();
+
+	});
