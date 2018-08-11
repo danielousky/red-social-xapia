@@ -1,0 +1,11 @@
+%h3 
+= link_to 'Atrás', visitors_path, class: 'btn btn-secondary'
+Usuarios 
+%hr
+.row
+  .col
+    %table.table.table-condent
+      %tbody
+        - @users.each do |user|
+          %tr
+            = render user

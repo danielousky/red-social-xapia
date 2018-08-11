@@ -7,4 +7,7 @@ class User < ApplicationRecord
   has_many :comments
   accepts_nested_attributes_for :comments
 
+  scope :search, lambda{|keyworks| where('name LIKE ? OR email LiKE ?', '%keyworks%', '%keyworks%')}
+
+
 end

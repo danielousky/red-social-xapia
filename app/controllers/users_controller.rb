@@ -2,7 +2,11 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @users = User.all
+    if params[:keyworks]
+      @users = User.search params[:keyworks]
+    else
+     @users = User.all
+    end
   end
 
   def show

@@ -1,0 +1,5 @@
+%td= user.name
+%td= user.email
+- if true # Verificar que usuario es amigo de current_user
+	%td= link_to 'Solicitar Amistad', '#', class: 'btn btn-sm btn-success' # 
+
