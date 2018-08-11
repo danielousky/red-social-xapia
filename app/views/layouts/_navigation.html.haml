@@ -1,10 +1,18 @@
 -# navigation styled for Bootstrap 3.0
 .container
-  %nav.navbar.navbar-dark.bg-inverse
-    %ul.nav.navbar-nav.clearfix
-      %li.nav-item
-        %button.navbar-toggler.hidden-sm-up.nav-link{"aria-controls" => "exCollapsingNavbar2", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#exCollapsingNavbar2", "data-toggle" => "collapse", :type => "button"}
-          \ &#9776;
-    #exCollapsingNavbar2.collapse.navbar-toggleable-xs
-      = link_to "Rails bootstrap", root_path, class: 'navbar-brand'
-      %ul.nav.navbar-nav= render 'layouts/navigation_links'
+  %nav.navbar.navbar-dark.bg-dark.justify-content-between
+    %h3.navbar-brand.text-white Red Social Xappia
+    - if current_user
+      %span.text-muted= current_user.name
+      = form_tag(users_path, method: :get, class: 'form-inline' ) do
+        = text_field_tag :keywords, nil ,class: 'form-control mr-sm-2', placeholder: 'Buscar Amigos', type: 'search', 'aria-label' => 'Search'
+        %button.btn.btn-outline-info.my-2.my-sm-0.btn-sm{:type => "submit"} Search
+      .nav-item
+
+      .nav-item.float-right
+        = link_to destroy_user_session_path, {method: :delete, class: 'btn btn-sm btn-outline-secondary' } do 
+          Salir
+    - else
+      .nav-item.float-right
+        = link_to user_session_path, {method: :get, class: 'btn btn-sm btn-outline-info' } do 
+          Entrar
