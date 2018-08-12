@@ -1,5 +1,8 @@
+%td= user.id
 %td= user.name
 %td= user.email
-- if true # Verificar que usuario es amigo de current_user
-	%td= link_to 'Solicitar Amistad', '#', class: 'btn btn-sm btn-success' # 
-
+- # Diferenciar entre Amistades y no amistades
+- if friendship = current_user.friendships.find_by(friend_id: user.id)
+	%td= link_to 'Dejar Amistad', friendship, :method => :delete, class: 'btn btn-sm btn-danger'
+- else
+	%td= link_to 'Solicitar Amistad', friendships_path(friend_id: user.id), :method => :post, class: 'btn btn-sm btn-success'
