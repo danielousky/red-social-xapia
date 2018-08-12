@@ -4,6 +4,10 @@ Rails.application.routes.draw do
   devise_for :users
   resources :users
   resources :visitors
-  resources :friendships
+  resources :friendships do
+  	member do
+      post 'switch'
+    end
+  end
 
 end

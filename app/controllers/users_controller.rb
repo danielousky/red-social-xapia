@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
   def index
     @users = User.where('id != ?', current_user.id)
-    @users = @users.search params[:keyworks] if params[:keyworks] 
+    @users = @users.search params[:keywords] if params[:keywords] 
   end
 
   def show
@@ -13,5 +13,9 @@ class UsersController < ApplicationController
     end
   end
 
+  private
 
+    def user_params
+      params.require(:admin_user).permit(:name, :email, :password, :password_confirmation)
+    end
 end

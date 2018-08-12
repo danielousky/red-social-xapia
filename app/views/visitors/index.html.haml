@@ -1,6 +1,20 @@
 .raw
 	.col-5
 		%ul.list-group 
+			%li.list-group-item.list-group-item-secondary
+				Tus Amistades:
+			- @user.friendships.each do |f| 
+				%li.list-group-item
+					=f.user.name
+					- if f.is_confirmed?
+						=link_to 'Dejar Amistad', "/friendships/#{f.id}/switch", class: 'float-right btn btn-sm btn-danger', method: :post
+					- else
+						=link_to 'Confirmar Amistad', "/friendships/#{f.id}/switch", class: 'float-right btn btn-sm btn-info', method: :post
+
+
+.raw
+	.col-5
+		%ul.list-group 
 			%li.list-group-item.list-group-item-info
 				Tus Publicaciones:
 				= link_to 'Publicar', 'javascript:void(0)', class: 'btn btn-outline-success float-right btn-sm', id: 'send_comment'
@@ -14,7 +28,10 @@
 		%ul.list-group 
 			%li.list-group-item.list-group-item-secondary
 				Otras Publicaciones:
-			-# Coment.all.publics
+			- Comment.order('created_at DESC').first(20).each do |comment| 
+				%li.list-group-item
+					= render comment
+			
 
 
 :javascript
