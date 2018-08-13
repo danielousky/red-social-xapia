@@ -1,5 +1,5 @@
 .raw
-	.col-5
+	.col-4
 		%ul.list-group 
 			%li.list-group-item.list-group-item-secondary
 				Tus Amistades:
@@ -18,8 +18,7 @@
 					= f.user.name
 					= link_to 'Confirmar Amistad', confirmed_friendship_path(f.id), class: 'float-right btn btn-sm btn-info', method: :post
 
-.raw
-	.col-5
+	.col-4
 		%ul.list-group 
 			%li.list-group-item.list-group-item-info
 				Tus Publicaciones:
@@ -30,7 +29,7 @@
 				%li.list-group-item
 					= render partial: 'comments/comment', locals: { publish_autor:  false, comment: comment}
 
-	.col-5
+	.col-4
 		%ul.list-group 
 			%li.list-group-item.list-group-item-secondary
 				Otras Publicaciones:
