@@ -1,0 +1,47 @@
+es:
+  errors:
+    messages:
+      not_found: "No encontrado"
+      already_confirmed: "Ya ha sido confirmado"
+      not_locked: "No está bloqueado"
+      not_saved: 'Los datos no pudieron ser guardados'
+
+  devise:
+    failure:
+      already_authenticated: 'Ya ha iniciado sesión.'
+      user:
+          not_found_in_database: "Usuario no encontrado"
+          unauthenticated: 'Debes ingresar como usuario registrado antes de continuar.'
+          invalid: 'Usuario o contraseña Invalida'
+    sessions:
+      link: 'Ingresar'
+      signed_in: '¡Bienvenido!'
+      signed_out: '¡Hasta pronto!'
+      unauthenticated: 'Debes ingresar como usuario registrado antes de continuar.'
+      unconfirmed: 'Debes confirmar '
+      locked: 'Tu cuenta est&aacute; boqueada.'
+      invalid: 'El usuario y/o la contraseña son incorrectos.'
+      invalid_token: 'Token de autenticaticación incorrecto.'
+      timeout: 'Tu sesión ha caducado. Por favor, vuelve a ingresar.'
+      inactive: 'Tu cuenta todavia no ha sido activada.'
+    passwords:
+      link: '¿Olvidaste tu contraseña?'
+      send_instructions: 'En unos minutos recibirás un email con las instrucciones de como redefinir tu contraseña.'
+      updated: 'Has cambiado correctamente tu contraseña y se ha iniciado tu sesión automáticamente.'
+    confirmations:
+      link: "¿No has recibido las instrucciones de confirmación?"
+      send_instructions: 'En unos minutos recibirás un email con las instrucciones de como confirmar tu cuenta. '
+      confirmed: 'Tu cuenta ha sido confirmada correctamente y se ha iniciado tu sesión automáticamente.'
+    registrations:
+      link: 'Registrarse'
+      signed_up: 'Te has registrado correctamente.'
+      updated: 'Actualizaste tu cuenta correctamente.'
+      destroyed: 'Has cancelado tu cuenta correctamente.'
+    unlocks:
+      link: "¿No has recibido las instrucciones de desbloqueo?"
+      send_instructions: 'En unos minutos recibirás un email con las instrucciones de como desbloquear tu cuenta.'
+      unlocked: 'Tu cuenta ha sido desbloqueada correctamente y se ha iniciado tu sesión automáticamente.'
+    mailer:
+      confirmation_instructions: 'Instrucciones de confirmación de tu cuenta'
+      reset_password_instructions: 'Instrucciones para cambiar la contraseña de tu cuenta'
+      unlock_instructions: 'Instrucciones de desbloqueo de tu cuenta'
