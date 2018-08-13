@@ -6,7 +6,8 @@ Rails.application.routes.draw do
   resources :visitors
   resources :friendships do
   	member do
-      post 'switch'
+
+      post 'confirmed'
     end
   end
 

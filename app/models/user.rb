@@ -12,6 +12,6 @@ class User < ApplicationRecord
   # scope :search, -> {where('id != ?', 3)}
 
   has_many :friendships, dependent: :destroy
-  has_many :friends, -> { Friendship.confirmeds }, through: :friendships, source: :user
+  has_many :friends, -> { Friendship.confirmeds }, through: :friendships, foreign_key: 'friend_id' 
 
 end
