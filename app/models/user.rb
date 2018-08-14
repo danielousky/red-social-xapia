@@ -7,9 +7,7 @@ class User < ApplicationRecord
   has_many :comments
   accepts_nested_attributes_for :comments
 
-  scope :search, lambda{|keywords| where('name LIKE ? OR email LIKE ?', "%#{keywords}%", "%#{keywords}%")}
-  # scope :search, -> {where('name LIKE ?', '%Dan%')}
-  # scope :search, -> {where('id != ?', 3)}
+  scope :search, lambda{|keywords| where('name ILIKE ? OR email ILIKE ?', "%#{keywords}%", "%#{keywords}%")}
 
   has_many :friendships, dependent: :destroy
   has_many :friends, -> { Friendship.confirmeds }, through: :friendships, foreign_key: 'friend_id' 
