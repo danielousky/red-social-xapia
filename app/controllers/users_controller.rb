@@ -1,3 +1,4 @@
+# CONTROLADOR PARA LA ENTIDAD USER, ES LA IMPLEMENTADA POR DEVISE
 class UsersController < ApplicationController
   before_action :authenticate_user!
 
