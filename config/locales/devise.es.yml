@@ -13,6 +13,7 @@ es:
           not_found_in_database: "Usuario no encontrado"
           unauthenticated: 'Debes ingresar como usuario registrado antes de continuar.'
           invalid: 'Usuario o contraseña Invalida'
+          timeout: 'Sesión cerrada por tiempo sin uso. Por favor inicie sesión nuevamente'
     sessions:
       link: 'Ingresar'
       signed_in: '¡Bienvenido!'

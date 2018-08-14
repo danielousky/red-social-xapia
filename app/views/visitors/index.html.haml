@@ -1,42 +1,46 @@
-.raw
-	.col-4
-		%ul.list-group 
-			%li.list-group-item.list-group-item-secondary
-				Tus Amistades:
-			- @user.friends.each do |f| 
-				%li.list-group-item
-					= f.name
-					- #friendship = @user.friendships.where(user_id: f.id).first
-					- friendship = Friendship.find_by(user_id: @user.id, friend_id:f.id )
-					= link_to 'Dejar Amistad', friendship_path(friendship.id), class: 'float-right btn btn-sm btn-danger', method: :delete
-					= #link_to 'Dejar Amistad', "/friendships/#{f.id}/switch", class: 'float-right btn btn-sm btn-danger', method: :post
-			%li.list-group-item.list-group-item-secondary
-				Por confirmar:
+.container-fluid
+	.row
+		.col-sm
+			%ul.list-group 
+				%li.d-block.p-2.bg-dark.text-white
 
-			- Friendship.pendents(@user.id).order('created_at ASC').each do |f|
-				%li.list-group-item
-					= f.user.name
-					= link_to 'Confirmar Amistad', confirmed_friendship_path(f.id), class: 'float-right btn btn-sm btn-info', method: :post
-
-	.col-4
-		%ul.list-group 
-			%li.list-group-item.list-group-item-info
-				Tus Publicaciones:
-				= link_to 'Publicar', 'javascript:void(0)', class: 'btn btn-outline-success float-right btn-sm', id: 'send_comment'
-				#send_comment_form.hidden-sm-up{style: 'display:none;'}
-					= render '/comments/form'
-			- @user.comments.order('created_at DESC').first(20).each do |comment| 
-				%li.list-group-item
-					= render partial: 'comments/comment', locals: { publish_autor:  false, comment: comment}
-
-	.col-4
-		%ul.list-group 
-			%li.list-group-item.list-group-item-secondary
-				Otras Publicaciones:
-			- Comment.others(@user.id).order('created_at DESC').first(20).each do |comment| 
-				- if comment.public? or (comment.private and @user.friends.include? comment.user)
+					Tus Amistades:
+				- @user.friends.each do |f| 
 					%li.list-group-item
-						= render partial: 'comments/comment', locals: { publish_autor:  true, comment: comment}
+						= f.name
+						- #friendship = @user.friendships.where(user_id: f.id).first
+						- friendship = Friendship.find_by(user_id: @user.id, friend_id:f.id )
+						= link_to 'Dejar Amistad', friendship_path(friendship.id), class: 'float-right btn btn-sm btn-danger', method: :delete
+						= #link_to 'Dejar Amistad', "/friendships/#{f.id}/switch", class: 'float-right btn btn-sm btn-danger', method: :post
+				- @pendents = Friendship.pendents(@user.id).order('created_at ASC')
+				- if @pendents.count > 0 
+					%li.d-block.p-2.bg-info.text-white-50
+						Por confirmar:
+
+					- @pendents.each do |f|
+						%li.list-group-item
+							= f.user.name
+							= link_to 'Confirmar Amistad', confirmed_friendship_path(f.id), class: 'float-right btn btn-sm btn-info', method: :post
+
+		.col-sm
+			%ul.list-group{style: "overflow-y:scroll;height: 600px"} 
+				%li.list-group-item.list-group-item-info
+					Tus Publicaciones:
+					= link_to 'Publicar', 'javascript:void(0)', class: 'btn btn-outline-success float-right btn-sm', id: 'send_comment'
+					#send_comment_form.hidden-sm-up{style: 'display:none;'}
+						= render '/comments/form'
+				- @user.comments.order('created_at DESC').first(20).each do |comment| 
+					%li.list-group-item
+						= render partial: 'comments/comment', locals: { publish_autor:  false, comment: comment}
+
+		.col-sm
+			%ul.list-group{style: "overflow-y:scroll;height: 600px"}
+				%li.list-group-item.list-group-item-secondary
+					Otras Publicaciones:
+				- Comment.others(@user.id).order('created_at DESC').first(20).each do |comment| 
+					- if comment.public? or (comment.private and @user.friends.include? comment.user)
+						%li.list-group-item
+							= render partial: 'comments/comment', locals: { publish_autor:  true, comment: comment}
 
 
 :javascript

@@ -1,15 +1,15 @@
 
+- if comment.private
+  %span.float-right.badge.badge-info.m-0 Privado
 - if comment.created_at > (Time.now - 1.day)
   - t = "Hace #{distance_of_time_in_words(comment.created_at, Time.now)}"
 - else
   - t = "#{l(comment.created_at, format: '%a, %d/%m')}".downcase
-.text-muted= t
-- if comment.private
-  %span.float-right.badge.badge-info Privado
+.small.text-muted= t
 
-%p
+%p.m-0
   %b.text-info= comment.title
   .text-secondary= comment.content
 
-.text-muted.float-right= "Por #{comment.user.name}" if publish_autor
+  .text-muted.float-right.small= "Por #{comment.user.name}" if publish_autor
 

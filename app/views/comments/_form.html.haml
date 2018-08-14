@@ -12,8 +12,9 @@
   .form-group
     = f.text_area :content, class: 'form-control', row: "3", required: true, placeholder: '¿Qué está pasando?'
   .float-right
-    = f.label :private
-    = f.check_box :private
+    .badge.badge-light
+      Privado
+      = f.check_box :private
     = f.hidden_field :user_id
 
-    = f.submit 'Save', class: 'btn btn-sm btn-success'
+    = f.submit 'Enviar', class: 'btn btn-sm btn-success'
