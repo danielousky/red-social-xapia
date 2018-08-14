@@ -9,7 +9,7 @@ class Friendship < ApplicationRecord
 
   # SCOPE
   scope :confirmeds, -> {where("is_confirmed")}
-  scope :pendents, lambda{|user_id| where('friend_id == ? AND is_confirmed = false', user_id)}
+  scope :pendents, lambda{|user_id| where('friend_id = ? AND is_confirmed = false', user_id)}
 
   # DISPARADORES
   after_destroy do |f|
