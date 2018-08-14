@@ -8,7 +8,7 @@ class Friendship < ApplicationRecord
   validates :user, uniqueness: { scope: :friend_id, message: 'La amistad ya fue solicitada.'}
 
   # SCOPE
-  scope :confirmeds, -> {where("is_confirmed IS 1")}
+  scope :confirmeds, -> {where("is_confirmed IS TRUE")}
   scope :pendents, lambda{|user_id| where('friend_id == ? AND is_confirmed IS 0', user_id)}
 
   # DISPARADORES
